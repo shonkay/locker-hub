@@ -1,0 +1,7 @@
+.TopBar {
+    height: 70px;
+    width: 100%;
+    background-color: #DEB120;
+    display: flex;
+    align-items: center;
+}
