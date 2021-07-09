@@ -1,5 +1,6 @@
 import React from "react";
 import FeaturedImg from '../../../../../assets/images/featured-img.jpg'
+import classes from './FeaturedLocker.module.css';
 
 const FeaturedLocker = (props: any) => {
     return (
@@ -9,7 +10,7 @@ const FeaturedLocker = (props: any) => {
                 <span style={{ color: '#7abaf6', fontSize: 12, fontWeight: 600 }}>
                     22A Adeola Odeku Street, VI, Lagos
                 </span>
-                <div className="star-rating">
+                <div className={classes.StarRating}>
                     <i className="fa fa-star" aria-hidden="true"></i>
                     <i className="fa fa-star" aria-hidden="true"></i>
                     <i className="fa fa-star" aria-hidden="true"></i>
