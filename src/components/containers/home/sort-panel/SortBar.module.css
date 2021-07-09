@@ -1,0 +1,66 @@
+.SortPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #f3f3f3;
+    color: #413b35;
+}
+
+.SortPanel h4 {
+    font-size: 16px;
+}
+
+/* Reset Select */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: transparent;
+    background-image: none;
+    font-size: 12px;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .Select {
+    position: relative;
+    display: flex;
+    width: 8em;
+    height: 2em;
+    line-height: 1;
+    background: transparent;
+    overflow: hidden;
+    border-radius: .25em;
+  }
+  select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #413b35;
+    cursor: pointer;
+  }
+  /* Arrow */
+  .Select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 8px;
+    right: 0;
+    padding: 0 1em;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
+  /* Transition */
+  .Select:hover::after {
+    color: #040404;
+  }
+  
