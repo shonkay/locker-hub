@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './accordion.css';
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import bxChevronUp from '@iconify-icons/bx/bx-chevron-up';
 
 

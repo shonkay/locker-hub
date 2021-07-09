@@ -10,10 +10,15 @@ interface HomeProps extends RouteComponentProps {
 
 const Home = (props: HomeProps) => {
     const [lockers, setLocker] = useState([] as LockersModel[]);
+    const [ defaultSearchType, setDefaultSearchType] = useState<string>('')
+
+    const updateDefaultSearchType = (searchType: string) => {
+        setDefaultSearchType(searchType)
+    }
 
     return (
-        <Applayout {...props} setLocker={setLocker}>
-            <SortPanel />
+        <Applayout {...props} setLocker={setLocker} defaultSearchType={defaultSearchType}>
+            <SortPanel updateDefaultSearchType={updateDefaultSearchType} />
             <DataSection lockers={lockers} />
         </Applayout>
     )

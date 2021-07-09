@@ -1,34 +1,56 @@
 import AwesomeDebouncePromise from "awesome-debounce-promise";
-import React, { useState } from "react";
-import { searchLockerApi } from "../../../lib/locker-api";
-import { LockersModel } from "../../../model/api-interface";
+import React from "react";
+import { searchLockerApi, searchLockerClosestApi, searchLockerPriceApi } from "../../../lib/locker-api";
+import { ApiModel, LockersModel } from "../../../model/api-interface";
 import classes from './BackgroundHeader.module.css'
 
 interface BackgroundHeaderProps {
-    setLocker: React.Dispatch<React.SetStateAction<any>>
+    setLocker: React.Dispatch<React.SetStateAction<any>>;
+    defaultSearchType: string;
 }
 
-const searchAPI = async (text: string) => {
+const searchAPI = async (text: string, searchType: string) => {
     try {
-        const res = await searchLockerApi(text);
+        let res = {} as ApiModel;
+        if (searchType === 'lowestPrice') {
+            res = await searchLockerPriceApi(text);
+        } else if (searchType === 'closest') {
+            res = await searchLockerClosestApi(text);
+        } else {
+            res = await searchLockerApi(text);
+        }
         if (res.responseCode === 200) {
             return res?.modelResponse as LockersModel[]
         }
-        return null
+        return []
     } catch (error) {
-        return null
+        return []
     }
 }
 
 const searchAPIDebounced = AwesomeDebouncePromise(searchAPI, 500);
 
 const BackgroundHeader = (props: BackgroundHeaderProps) => {
+    const { defaultSearchType } = props;
+    const [inputValue, setInputValue] = React.useState<string>('')
+
+    React.useEffect(() => {
+        const triggerSearchOnSortChange = async () => {
+            const searchData = await searchAPIDebounced(inputValue, props.defaultSearchType);
+            console.log(searchData)
+            props.setLocker(() => [...searchData]);
+        }
+        if (defaultSearchType !== '' && inputValue) {
+            triggerSearchOnSortChange()
+        }
+    }, [defaultSearchType])
 
     const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        const searchData = await searchAPIDebounced(e.target.value);
+        setInputValue(e.target.value);
+        const searchData = await searchAPIDebounced(e.target.value, props.defaultSearchType);
         console.log(searchData)
-        props.setLocker(searchData);
+        props.setLocker(() => [...searchData]);
     }
 
     return (

@@ -5,14 +5,15 @@ import Topbar from "../top-bar";
 
 interface ApplayoutProps extends RouteComponentProps {
     children: ReactNode;
-    setLocker: React.Dispatch<React.SetStateAction<any>>
+    setLocker: React.Dispatch<React.SetStateAction<any>>;
+    defaultSearchType: string;
 }
 
 const Applayout = (props: ApplayoutProps) => {
     return (
         <div>
             <Topbar />
-            <BackgroundHeader setLocker={props.setLocker} />
+            <BackgroundHeader setLocker={props.setLocker} defaultSearchType={props.defaultSearchType} />
             {props.children}
         </div>
     )

@@ -11,15 +11,19 @@ const LockerTable = (props: LockerTableProps) => {
         <table className={`table ${classes.Borderless}`}>
             <tbody>
                 {
-                    (props.lockers || []).map((res, i) => (
-                        <tr key={i}>
-                            <td> {res.dimension} </td>
-                            <td> {res.details} </td>
-                            <td> {res.price} </td>
-                            <td> {res.availability} </td>
-                            <td> <button className="btn btn-success">Rent Now</button> </td>
+                    props.lockers.length?
+                        (props.lockers || []).map((res, i) => (
+                            <tr key={i}>
+                                <td> {res.dimension} </td>
+                                <td> {res.details} </td>
+                                <td> {res.price} </td>
+                                <td> {res.availability} </td>
+                                <td> <button className="btn btn-success">Rent Now</button> </td>
+                            </tr>
+                        )) :
+                        <tr style={{ width: '100%' }}>
+                            <td style={{ textAlign: 'center' }}>No record found</td>
                         </tr>
-                    ))
                 }
             </tbody>
         </table>
