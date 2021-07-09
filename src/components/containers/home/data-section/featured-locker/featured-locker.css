@@ -1,0 +1,52 @@
+.wrapper {
+  border: 1px solid dodgerBlue;
+  width: 500px;
+  padding: 60px 15px 0px;
+  margin: 100px auto;
+}
+.relative {
+  position: relative;
+}
+.avtar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.client-name {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.5em;
+  margin: 15px 0px 5px;
+  text-transform: uppercase;
+}
+
+.star-rating {
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.testimonial-content {
+  padding: 10px 0px;
+  font-size: 1.2em;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.rating {
+  color: gold;
+}
+
+@media (max-width: 576px) {
+  .wrapper {
+    width: 100%;
+  }
+  .testimonial-content {
+  }
+}

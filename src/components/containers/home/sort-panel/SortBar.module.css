@@ -2,9 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
+    padding: 12px;
     background-color: #f3f3f3;
-    color: #413b35;
+    color: #413b35a1;
 }
 
 .SortPanel h4 {
@@ -38,12 +38,19 @@ select {
     background: transparent;
     overflow: hidden;
     border-radius: .25em;
+    font-weight: 600;
   }
   select {
     flex: 1;
     padding: 0 .5em;
-    color: #413b35;
+    color: #413b35a4;
     cursor: pointer;
+  }
+
+  .Select option {
+      background-color: #f3f3f1;
+      border: none;
+      outline: none;
   }
   /* Arrow */
   .Select::after {

@@ -1,43 +1,62 @@
 .BackgoundHeader {
-    height: 300px;
-    display: flex;
-    padding: 10px 15px;
-    background-image: url('../../../assets/images/locker-1.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  height: 300px;
+  display: flex;
+  padding: 10px 15px;
+  background-image: url("../../../assets/images/locker-1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .InputContainer {
-    box-sizing: border-box;
-    background-color: #ffffff;
-    padding: 5px 20px;
-    display: flex;
-    align-items: center;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
 }
 
 .InputContainer input {
-    border: none;
-    width: 250px;
+  border: none;
+  width: 250px;
 }
 
 .InputContainer input:focus {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 
 .InputContainer .ActionButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: red;
-    color: #ffffff;
-    margin: 0 0 0 25px;
-    padding: 2px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: red;
+  color: #ffffff;
+  margin: 0 0 0 25px;
+  padding: 2px 40px;
 }
 
 .InputContainer .ActionButton span {
-    background-color: #ffffff;
-    color: red;
-    font-size: 8px;
+  background-color: #ffffff;
+  color: red;
+  font-size: 8px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #6e6c6b;
+  font-weight: 600;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font-weight: 600;
+  color: #6e6c6b;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  font-weight: 600;
+  color: #6e6c6b;
 }

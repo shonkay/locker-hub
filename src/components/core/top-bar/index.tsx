@@ -13,7 +13,7 @@ const Topbar = (props: TopbarProps) => {
                 <Col xs={6}>
                     <Navbar>
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="mr-auto" style={{ fontWeight: 600, fontSize: 14 }}>
+                            <Nav className="mr-auto" style={{ fontWeight: 'bold', fontSize: 14 }}>
                                 <Nav.Link href="#home">Home</Nav.Link>
                                 <Nav.Link href="#link">Find a Locker</Nav.Link>
                                 <Nav.Link href="#link">Size Guide</Nav.Link>
@@ -26,7 +26,7 @@ const Topbar = (props: TopbarProps) => {
                 <Col xs={4}>
                     <Navbar>
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="mr-auto" style={{ fontWeight: 600, fontSize: 14 }}>
+                            <Nav className="mr-auto" style={{ fontWeight: 'bold', fontSize: 14 }}>
                                 <Nav.Link href="#home">My Account</Nav.Link>
                                 <Nav.Link href="#link">080-188-0872</Nav.Link>
                                 <Nav.Link href="#link"
