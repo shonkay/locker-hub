@@ -6,6 +6,7 @@ export interface ApiModel {
 }
 
 export interface LockersModel {
+    address: string;
     dimension: string;
     details: string;
     price: string;

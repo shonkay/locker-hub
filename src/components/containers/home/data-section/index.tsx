@@ -6,17 +6,19 @@ import LockerTable from "../../../UI/table";
 import FeaturedLocker from "./featured-locker";
 
 interface DataSectionProps {
-    lockers: LockersModel[]
+    lockers: LockersModel[];
+    defaultSearchType?: string;
+    updateDefaultSearchType: (searchType: string) => void;
 }
 const DataSection = (props: DataSectionProps) => {
     return (
         <Row className="py-4 px-1">
             <Col xs={3}>
-                <FeaturedLocker />
+                <FeaturedLocker lockers={props.lockers} />
             </Col>
             <Col xs={9}>
                 <div className="d-flex justify-content-between align-items-center px-2">
-                    <LockerAccordion />
+                    <LockerAccordion updateDefaultSearchType={props.updateDefaultSearchType} defaultSearchType={props.defaultSearchType} />
                     <span style={{ color: '#7abaf6', fontSize: 12, fontWeight: 600, textDecoration: 'underline' }}>View the guide size</span>
                 </div>
                 <div className="">

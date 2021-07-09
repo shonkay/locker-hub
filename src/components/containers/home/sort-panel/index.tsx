@@ -2,7 +2,8 @@ import React from "react";
 import classes from './SortBar.module.css'
 
 interface SortPanelProps {
-    updateDefaultSearchType: (searchType: string) => void
+    updateDefaultSearchType: (searchType: string) => void;
+    availableLocker: number;
 }
 const SortPanel = (props: SortPanelProps) => {
 
@@ -13,7 +14,7 @@ const SortPanel = (props: SortPanelProps) => {
     }
     return (
         <div className={classes.SortPanel}>
-            <h4> 6 Open Lockers Available </h4>
+            <h4> {props.availableLocker} Open Lockers Available </h4>
             <div className="d-flex align-items-center">
                 <h4 className="mb-0 pr-2">Sort By</h4>
                 <div className={classes.Select}>

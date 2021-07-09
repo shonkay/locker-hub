@@ -1,29 +1,36 @@
 import AwesomeDebouncePromise from "awesome-debounce-promise";
 import React from "react";
-import { searchLockerApi, searchLockerClosestApi, searchLockerPriceApi } from "../../../lib/locker-api";
+import { getlockerInsStateBySize, searchLockerApi, searchLockerClosestApi, searchLockerPriceApi } from "../../../lib/locker-api";
 import { ApiModel, LockersModel } from "../../../model/api-interface";
 import classes from './BackgroundHeader.module.css'
 
 interface BackgroundHeaderProps {
     setLocker: React.Dispatch<React.SetStateAction<any>>;
+    setAvailableLocker: React.Dispatch<React.SetStateAction<number>>
     defaultSearchType: string;
 }
 
-const searchAPI = async (text: string, searchType: string) => {
+const searchAPI = async (text: string, searchType: string, setAvailableLocker: React.Dispatch<React.SetStateAction<number>>) => {
     try {
         let res = {} as ApiModel;
         if (searchType === 'lowestPrice') {
             res = await searchLockerPriceApi(text);
         } else if (searchType === 'closest') {
             res = await searchLockerClosestApi(text);
+        } else if (searchType === 'small' || searchType === 'medium' || searchType === 'large') {
+            res = await getlockerInsStateBySize(text, searchType);
         } else {
             res = await searchLockerApi(text);
         }
         if (res.responseCode === 200) {
+            setAvailableLocker(Number(res?.totalLockerAvailable))
             return res?.modelResponse as LockersModel[]
+        } else {
+            setAvailableLocker(0)
+            return []
         }
-        return []
     } catch (error) {
+        setAvailableLocker(0)
         return []
     }
 }
@@ -36,7 +43,7 @@ const BackgroundHeader = (props: BackgroundHeaderProps) => {
 
     React.useEffect(() => {
         const triggerSearchOnSortChange = async () => {
-            const searchData = await searchAPIDebounced(inputValue, props.defaultSearchType);
+            const searchData = await searchAPIDebounced(inputValue, props.defaultSearchType, props.setAvailableLocker);
             console.log(searchData)
             props.setLocker(() => [...searchData]);
         }
@@ -48,7 +55,7 @@ const BackgroundHeader = (props: BackgroundHeaderProps) => {
     const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setInputValue(e.target.value);
-        const searchData = await searchAPIDebounced(e.target.value, props.defaultSearchType);
+        const searchData = await searchAPIDebounced(e.target.value, props.defaultSearchType, props.setAvailableLocker);
         console.log(searchData)
         props.setLocker(() => [...searchData]);
     }

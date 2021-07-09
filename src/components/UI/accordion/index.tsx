@@ -3,26 +3,38 @@ import './accordion.css';
 import { Icon } from '@iconify/react';
 import bxChevronUp from '@iconify-icons/bx/bx-chevron-up';
 
+interface LockerAccordionProps {
+    updateDefaultSearchType: (searchType: string) => void;
+    defaultSearchType?: string;
+}
 
-const LockerAccordion = (props: any) => {
+export const accordionTypes = ['small', 'medium', 'large'];
+
+const LockerAccordion = (props: LockerAccordionProps) => {
     const [checked, setChecked] = useState<boolean>(true);
 
     const toggleChecked = () => {
         setChecked((prevState) => !prevState)
     }
+
+    const handleSortType = (e: string) => {
+        console.log(e);
+        props.updateDefaultSearchType(e);
+    }
+
     return (
         <div className="d-flex flex-column">
-            <div className="accordion" onClick={toggleChecked}>
-                <div className="accordion__header">
+            <div className="accordion">
+                <div className="accordion__header" onClick={toggleChecked}>
                     <h3 className="accordion__title">Featured</h3>
                     <span className="accordion__icon"><Icon icon={bxChevronUp} /></span>
                 </div>
                 {checked &&
                     <div className="accordion__content">
                         <ul>
-                            <li className="active">Small</li>
-                            <li>Medium</li>
-                            <li>Large</li>
+                            {accordionTypes.map((res, i) => (
+                                <li key={i} className={props.defaultSearchType === res ? 'active' : ''} onClick={() => { handleSortType(res) }}>{res}</li>
+                            ))}
                         </ul>
                     </div>
                 }
